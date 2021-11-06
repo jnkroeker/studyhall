@@ -79,7 +79,10 @@ spec:
   ports:
   - name: sales-api 
     port: 3000
+<<<<<<< HEAD
     targetPort: sales-api 
+=======
+>>>>>>> set up debugging support for use during development
   - name: sales-api-debug 
     port: 4000 
     targetPort: sales-api-debug 
