@@ -1,13 +1,9 @@
 package main
 
 import (
-<<<<<<< HEAD
 	"context"
 	"errors"
 	"expvar"
-=======
-	"errors"
->>>>>>> override default configuration with environment variables or command line flags
 	"fmt"
 	"net/http"
 	"os"
@@ -16,14 +12,11 @@ import (
 	"syscall"
 	"time"
 
-<<<<<<< HEAD
 	"jnk-ardan-service/app/services/sales-api/handlers"
 	"jnk-ardan-service/business/sys/auth"
 	"jnk-ardan-service/business/sys/database"
 	"jnk-ardan-service/foundation/keystore"
 
-=======
->>>>>>> override default configuration with environment variables or command line flags
 	"github.com/ardanlabs/conf"
 	"go.uber.org/automaxprocs/maxprocs"
 	"go.uber.org/zap"
@@ -78,7 +71,6 @@ func run(log *zap.SugaredLogger) error {
 			IdleTimeout     time.Duration `conf:"default:120s"`
 			ShutdownTimeout time.Duration `conf:"default:20s,mask"`
 		}
-<<<<<<< HEAD
 		Auth struct {
 			KeysFolder string `conf:"default:zarf/keys/"`
 			ActiveKID  string `conf:"default:54bb2165-71e1-41a6-af3e-7da4a0e1e2c1"`
@@ -92,8 +84,6 @@ func run(log *zap.SugaredLogger) error {
 			MaxOpenConns int    `conf:"default:0"`
 			DisableTLS   bool   `conf:"default:true"`
 		}
-=======
->>>>>>> override default configuration with environment variables or command line flags
 	}{
 		Version: conf.Version{
 			SVN:  build,
@@ -123,7 +113,6 @@ func run(log *zap.SugaredLogger) error {
 	}
 	log.Infow("startup", "config", out)
 
-<<<<<<< HEAD
 	expvar.NewString("build").Set(build)
 
 	// ========================================================================================
@@ -245,13 +234,6 @@ func run(log *zap.SugaredLogger) error {
 			return fmt.Errorf("could not stop server gracefully: %w", err)
 		}
 	}
-=======
-	// ========================================================================================
-
-	shutdown := make(chan os.Signal, 1)
-	signal.Notify(shutdown, syscall.SIGINT, syscall.SIGTERM)
-	<-shutdown
->>>>>>> override default configuration with environment variables or command line flags
 
 	return nil
 }
