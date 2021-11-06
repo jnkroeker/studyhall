@@ -10,11 +10,8 @@ SHELL := /bin/bash
 run:
 	go run app/services/sales-api/main.go | go run app/tooling/logfmt/main.go
 
-<<<<<<< HEAD
 # ======================================================================
 # Building containers
-=======
->>>>>>> set up debugging support for use during development
 
 VERSION := 1.0 
 
