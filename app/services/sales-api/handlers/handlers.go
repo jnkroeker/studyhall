@@ -55,6 +55,7 @@ type APIMuxConfig struct {
 }
 
 // APIMux constructs an http.Handler with all applications routes defined.
+<<<<<<< HEAD
 func APIMux(cfg APIMuxConfig) *web.App {
 
 	// Construct the web.App "onion" which holds all routes.
@@ -65,6 +66,16 @@ func APIMux(cfg APIMuxConfig) *web.App {
 		mid.Metrics(),
 		mid.Panics(),
 	)
+=======
+func APIMux(cfg APIMuxConfig) *httptreemux.ContextMux {
+	mux := httptreemux.NewContextMux()
+
+	// Register debug check endpoints.
+	tgh := testgrp.Handlers{
+		Log: cfg.Log,
+	}
+	mux.Handle(http.MethodGet, "/v1/test", tgh.Test)
+>>>>>>> add handlers
 
 	// Load the routes for the different versions of the API
 	v1(app, cfg)
