@@ -164,7 +164,11 @@ func run(log *zap.SugaredLogger) error {
 	// related endpoints. this includes the standard library endpoints.
 
 	// Construct the mux for the debug calls.
+<<<<<<< HEAD
 	debugMux := handlers.DebugMux(build, log, db)
+=======
+	debugMux := handlers.DebugMux(build, log)
+>>>>>>> add handlers
 
 	// Start the service listening for debug requests.
 	// Not concerned with shutting this down with load shedding.
