@@ -1,13 +1,9 @@
 package main
 
 import (
-<<<<<<< HEAD
 	"context"
 	"errors"
 	"expvar"
-=======
-	"errors"
->>>>>>> override default configuration with environment variables or command line flags
 	"fmt"
 	"net/http"
 	"os"
@@ -16,11 +12,8 @@ import (
 	"syscall"
 	"time"
 
-<<<<<<< HEAD
 	"jnk-ardan-service/app/services/sales-api/handlers"
 
-=======
->>>>>>> override default configuration with environment variables or command line flags
 	"github.com/ardanlabs/conf"
 	"go.uber.org/automaxprocs/maxprocs"
 	"go.uber.org/zap"
