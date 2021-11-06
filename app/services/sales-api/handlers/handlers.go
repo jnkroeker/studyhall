@@ -4,7 +4,6 @@ package handlers
 
 import (
 	"expvar"
-<<<<<<< HEAD
 	"jnk-ardan-service/app/services/sales-api/handlers/debug/checkgrp"
 	"jnk-ardan-service/app/services/sales-api/handlers/v1/testgrp"
 	"jnk-ardan-service/business/web/mid"
@@ -15,10 +14,6 @@ import (
 	"os"
 
 	"go.uber.org/zap"
-=======
-	"net/http"
-	"net/http/pprof"
->>>>>>> set up debugging support for use during development
 )
 
 // DebugStandardLibraryMux registers all the debug routes from the standard lilbrary
