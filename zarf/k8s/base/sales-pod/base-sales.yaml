@@ -31,7 +31,6 @@ spec:
           containerPort: 3000 
         - name: sales-api-debug 
           containerPort: 4000
-<<<<<<< HEAD
         readinessProbe: # readiness probes mark the service available to accept traffic
           httpGet:
             path: /debug/readiness 
@@ -67,8 +66,6 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName 
-=======
->>>>>>> set up debugging support for use during development
 ---
 apiVersion: v1 
 kind: Service 
@@ -82,10 +79,7 @@ spec:
   ports:
   - name: sales-api 
     port: 3000
-<<<<<<< HEAD
     targetPort: sales-api 
-=======
->>>>>>> set up debugging support for use during development
   - name: sales-api-debug 
     port: 4000 
     targetPort: sales-api-debug 
