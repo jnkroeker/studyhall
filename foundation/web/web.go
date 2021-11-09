@@ -30,6 +30,7 @@ func NewApp(shutdown chan os.Signal, mw ...Middleware) *App {
 		ContextMux: httptreemux.NewContextMux(),
 		shutdown:   shutdown,
 		mw:         mw,
+	}
 }
 
 // SginalShutdown is used to gracefully shutdown the app when an integrity
