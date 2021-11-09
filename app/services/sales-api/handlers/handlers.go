@@ -7,7 +7,10 @@ import (
 	"jnk-ardan-service/app/services/sales-api/handlers/debug/checkgrp"
 	"jnk-ardan-service/app/services/sales-api/handlers/v1/testgrp"
 	"jnk-ardan-service/foundation/web"
+<<<<<<< HEAD
 
+=======
+>>>>>>> return the user-defined type web.App which embeds the http mux, abstracting the specific mux in use
 	"net/http"
 	"net/http/pprof"
 	"os"
