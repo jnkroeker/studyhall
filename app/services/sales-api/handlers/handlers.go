@@ -6,13 +6,9 @@ import (
 	"expvar"
 	"jnk-ardan-service/app/services/sales-api/handlers/debug/checkgrp"
 	"jnk-ardan-service/app/services/sales-api/handlers/v1/testgrp"
-<<<<<<< HEAD
 	"jnk-ardan-service/business/web/mid"
 	"jnk-ardan-service/foundation/web"
 
-=======
-	"jnk-ardan-service/foundation/web"
->>>>>>> return the user-defined type web.App which embeds the http mux, abstracting the specific mux in use
 	"net/http"
 	"net/http/pprof"
 	"os"
@@ -60,7 +56,6 @@ type APIMuxConfig struct {
 
 // APIMux constructs an http.Handler with all applications routes defined.
 func APIMux(cfg APIMuxConfig) *web.App {
-<<<<<<< HEAD
 
 	// Construct the web.App "onion" which holds all routes.
 	app := web.NewApp(
@@ -79,19 +74,11 @@ func APIMux(cfg APIMuxConfig) *web.App {
 
 func v1(app *web.App, cfg APIMuxConfig) {
 	const version = "v1"
-=======
 	app := web.NewApp(cfg.Shutdown)
->>>>>>> return the user-defined type web.App which embeds the http mux, abstracting the specific mux in use
 
 	tgh := testgrp.Handlers{
 		Log: cfg.Log,
 	}
-<<<<<<< HEAD
 
 	app.Handle(http.MethodGet, "v1", "/test", tgh.Test)
-=======
-	app.Handle(http.MethodGet, "/v1/test", tgh.Test)
-
-	return app
->>>>>>> return the user-defined type web.App which embeds the http mux, abstracting the specific mux in use
 }
