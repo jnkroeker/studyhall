@@ -57,11 +57,12 @@ type APIMuxConfig struct {
 // APIMux constructs an http.Handler with all applications routes defined.
 func APIMux(cfg APIMuxConfig) *web.App {
 
-	// Construct the web.App which holds all routes.
+	// Construct the web.App "onion" which holds all routes.
 	app := web.NewApp(
 		cfg.Shutdown,
 		mid.Logger(cfg.Log),
 		mid.Errors(cfg.Log),
+		mid.Panics(),
 	)
 
 	// Load the routes for the different versions of the API
