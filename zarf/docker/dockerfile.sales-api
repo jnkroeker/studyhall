@@ -19,7 +19,10 @@ FROM alpine:3.14
 ARG BUILD_DATE
 ARG BUILD_REF
 COPY --from=build_sales-api /service/zarf/keys/. /service/zarf/keys/.
+<<<<<<< HEAD
 COPY --from=build_sales-api /service/app/tooling/admin/admin /service/admin
+=======
+>>>>>>> integration of auth middleware inside the application
 COPY --from=build_sales-api /service/app/services/sales-api/sales-api /service/sales-api
 WORKDIR /service 
 CMD ["./sales-api"]
