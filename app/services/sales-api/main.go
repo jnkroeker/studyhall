@@ -75,6 +75,7 @@ func run(log *zap.SugaredLogger) error {
 			KeysFolder string `conf:"default:zarf/keys/"`
 			ActiveKID  string `conf:"default:54bb2165-71e1-41a6-af3e-7da4a0e1e2c1"`
 		}
+<<<<<<< HEAD
 		DB struct {
 			User         string `conf:"default:postgres"`
 			Password     string `conf:"default:postgres,mask"`
@@ -84,6 +85,8 @@ func run(log *zap.SugaredLogger) error {
 			MaxOpenConns int    `conf:"default:0"`
 			DisableTLS   bool   `conf:"default:true"`
 		}
+=======
+>>>>>>> integration of auth middleware inside the application
 	}{
 		Version: conf.Version{
 			SVN:  build,
@@ -133,6 +136,7 @@ func run(log *zap.SugaredLogger) error {
 	}
 
 	// ========================================================================================
+<<<<<<< HEAD
 	// Database Support
 
 	// Create connectivity to the database.
@@ -156,6 +160,8 @@ func run(log *zap.SugaredLogger) error {
 	}()
 
 	// ========================================================================================
+=======
+>>>>>>> integration of auth middleware inside the application
 	// Start Debug Service
 
 	log.Infow("startup", "status", "debug router started", "host", cfg.Web.DebugHost)
@@ -189,7 +195,10 @@ func run(log *zap.SugaredLogger) error {
 		Shutdown: shutdown,
 		Log:      log,
 		Auth:     auth,
+<<<<<<< HEAD
 		DB:       db,
+=======
+>>>>>>> integration of auth middleware inside the application
 	})
 
 	// Construct a server to service the requests against the mux.
