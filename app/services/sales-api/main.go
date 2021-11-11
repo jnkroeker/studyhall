@@ -14,7 +14,10 @@ import (
 
 	"jnk-ardan-service/app/services/sales-api/handlers"
 	"jnk-ardan-service/business/sys/auth"
+<<<<<<< HEAD
 	"jnk-ardan-service/business/sys/database"
+=======
+>>>>>>> integration of auth middleware inside the application
 	"jnk-ardan-service/foundation/keystore"
 
 	"github.com/ardanlabs/conf"
