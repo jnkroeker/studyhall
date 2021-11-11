@@ -5,7 +5,6 @@ SHELL := /bin/bash
 
 # expvarmon -ports=":4000" -vars="build,requests,goroutines,errors,panics,mem:memstats.Alloc"
 
-<<<<<<< HEAD
 # For testing load on the service.
 # hey -m GET -c 100 -n 10000 http://localhost:3000/v1/users/1/2
 
@@ -20,14 +19,11 @@ SHELL := /bin/bash
 # Database Access (github.com/danvergara/dblab)
 # dblab --host 0.0.0.0 --user postgres --db postgres --pass postgres --ssl disable --port 5432 --driver postgres
 
-=======
->>>>>>> set up debugging support for use during development
 # ============================================================================
 
 run:
 	go run app/services/sales-api/main.go | go run app/tooling/logfmt/main.go
 
-<<<<<<< HEAD
 admin:
 	go run app/tooling/admin/main.go
 
@@ -40,8 +36,6 @@ test:
 
 # ============================================================================
 # Building containers
-=======
->>>>>>> set up debugging support for use during development
 
 VERSION := 1.0 
 
