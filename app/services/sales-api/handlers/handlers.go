@@ -55,7 +55,10 @@ type APIMuxConfig struct {
 	Shutdown chan os.Signal
 	Log      *zap.SugaredLogger
 	Auth     *auth.Auth
+<<<<<<< HEAD
 	DB       *sqlx.DB
+=======
+>>>>>>> integration of auth middleware inside the application
 }
 
 // APIMux constructs an http.Handler with all applications routes defined.
