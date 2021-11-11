@@ -6,6 +6,7 @@ import (
 	"expvar"
 	"jnk-ardan-service/app/services/sales-api/handlers/debug/checkgrp"
 	"jnk-ardan-service/app/services/sales-api/handlers/v1/testgrp"
+	"jnk-ardan-service/business/sys/auth"
 	"jnk-ardan-service/business/web/mid"
 	"jnk-ardan-service/foundation/web"
 
@@ -52,6 +53,7 @@ func DebugMux(build string, log *zap.SugaredLogger) http.Handler {
 type APIMuxConfig struct {
 	Shutdown chan os.Signal
 	Log      *zap.SugaredLogger
+	Auth     *auth.Auth
 }
 
 // APIMux constructs an http.Handler with all applications routes defined.
@@ -81,4 +83,5 @@ func v1(app *web.App, cfg APIMuxConfig) {
 	}
 
 	app.Handle(http.MethodGet, "v1", "/test", tgh.Test)
+	app.Handle(http.MethodGet, version, "/testauth", tgh.Test, mid.Authenticate(cfg.Auth), mid.Authorize("ADMIN"))
 }
