@@ -1,7 +1,6 @@
 # github.com/ardanlabs/conf v1.5.0
 ## explicit; go 1.13
 github.com/ardanlabs/conf
-<<<<<<< HEAD
 # github.com/ardanlabs/darwin v1.3.0
 ## explicit; go 1.16
 github.com/ardanlabs/darwin
@@ -38,8 +37,6 @@ github.com/leodido/go-urn
 github.com/lib/pq
 github.com/lib/pq/oid
 github.com/lib/pq/scram
-=======
->>>>>>> override default configuration with environment variables or command line flags
 # go.uber.org/atomic v1.7.0
 ## explicit; go 1.13
 go.uber.org/atomic
