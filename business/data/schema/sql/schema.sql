@@ -7,7 +7,7 @@ CREATE TABLE users (
     roles         TEXT[],
     password_hash TEXT,
     date_created  TIMESTAMP,
-    data_updated  TIMESTAMP,
+    date_updated  TIMESTAMP,
 
     PRIMARY KEY (user_id)
 );
