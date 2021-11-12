@@ -56,9 +56,13 @@ type APIMuxConfig struct {
 	Log      *zap.SugaredLogger
 	Auth     *auth.Auth
 <<<<<<< HEAD
+<<<<<<< HEAD
 	DB       *sqlx.DB
 =======
 >>>>>>> integration of auth middleware inside the application
+=======
+	DB       *sqlx.DB
+>>>>>>> integrate database into readiness handler
 }
 
 // APIMux constructs an http.Handler with all applications routes defined.
