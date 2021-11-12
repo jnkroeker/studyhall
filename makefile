@@ -68,12 +68,17 @@ kind-status:
 
 kind-status-sales:
 	kubectl get pods -o wide --watch --namespace=sales-system
+	
+kind-status-db:
+	kubectl get pods -o wide --watch --namespace=database-system
 
 kind-load:
 	cd zarf/k8s/kind/sales-pod; kustomize edit set images sales-api-image=sales-api-amd64:$(VERSION)
 	kind load docker-image sales-api-amd64:$(VERSION) --name $(KIND_CLUSTER)
 
 kind-apply:
+	kustomize build zarf/k8s/kind/database-pod | kubectl apply -f -
+	kubectl wait --namespace=database-system --timeout=120s --for=condition=Available deployment/database-pod
 	kustomize build zarf/k8s/kind/sales-pod | kubectl apply -f -
 
 kind-delete:
