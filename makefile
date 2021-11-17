@@ -3,6 +3,9 @@ SHELL := /bin/bash
 run:
 	go run main.go
 
+# ======================================================================
+# Building containers
+
 VERSION := 1.0 
 
 all: sales-api
@@ -15,6 +18,9 @@ sales-api:
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 		.
 
+# ======================================================================
+# Running from within k8s/kind
+
 KIND_CLUSTER := jnk-cluster
 
 kind-up:
@@ -22,6 +28,7 @@ kind-up:
 		--image kindest/node:v1.21.1@sha256:69860bda5563ac81e3c0057d654b5253219618a22ec3a346306239bba8cfa1a6 \
 		--name $(KIND_CLUSTER) \
 		--config zarf/k8s/kind/kind-config.yaml
+	kubectl config set-context --current --namespace=sales-system
 
 kind-down:
 	kind delete cluster --name $(KIND_CLUSTER)
@@ -30,6 +37,9 @@ kind-status:
 	kubectl get nodes -o wide
 	kubectl get svc -o wide
 	kubectl get pods -o wide --watch --all-namespaces
+
+kind-status-sales:
+	kubectl get pods -o wide --watch --namespace=sales-system
 
 kind-load:
 	cd zarf/k8s/kind/sales-pod; kustomize edit set images sales-api-image=sales-api-amd64:$(VERSION)
@@ -52,7 +62,7 @@ kind-update: all kind-load kind-restart
 kind-update-apply: all kind-load kind-apply
 
 kind-describe:
-	kubectl describe pod -l app=service --namespace=sales-system
+	kubectl describe pod -l app=sales --namespace=sales-system
 
 tidy:
 	go mod tidy

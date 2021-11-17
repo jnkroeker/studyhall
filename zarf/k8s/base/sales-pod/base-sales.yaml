@@ -6,7 +6,7 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment 
 metadata: 
-  name: sales-pod
+  name: sales-pod # base Pod name
   namespace: sales-system 
 spec:
   selector:
@@ -15,12 +15,15 @@ spec:
   template:
     metadata:
       labels:
-        app: sales 
+        app: sales # Selector for Pod name search.
     spec:
       dnsPolicy: ClusterFirstWithHostNet 
       hostNetwork: true 
       terminationGracePeriodSeconds: 60
       containers:
+        # sales-api container configuration
       - name: sales-api 
+        # gets patched to the specific docker image name in kind/sales-pod/kustomization.yaml
+        # done to avoid hardcoding image name and version
         image: sales-api-image
         

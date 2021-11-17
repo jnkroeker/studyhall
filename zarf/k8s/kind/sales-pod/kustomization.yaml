@@ -7,4 +7,6 @@ patchesStrategicMerge:
 images:
 - name: sales-api-image 
   newName: sales-api-amd64 
+  # this tag is updated in the makefile 
+  # update VERSION, then run kind-load command
   newTag: "1.0"
