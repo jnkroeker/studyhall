@@ -1,5 +1,12 @@
 SHELL := /bin/bash
 
+# ============================================================================
+# Testing running system ( run this on cmd line while app running )
+
+# expvarmon -ports=":4000" -vars="build,requests,goroutines,errors,panics,mem:memstats.Alloc"
+
+# ============================================================================
+
 run:
 	go run app/services/sales-api/main.go | go run app/tooling/logfmt/main.go
 
