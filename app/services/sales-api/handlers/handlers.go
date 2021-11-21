@@ -6,11 +6,11 @@ import (
 	"expvar"
 	"jnk-ardan-service/app/services/sales-api/handlers/debug/checkgrp"
 	"jnk-ardan-service/app/services/sales-api/handlers/v1/testgrp"
+	"jnk-ardan-service/foundation/web"
 	"net/http"
 	"net/http/pprof"
 	"os"
 
-	"github.com/dimfeld/httptreemux/v5"
 	"go.uber.org/zap"
 )
 
@@ -53,14 +53,14 @@ type APIMuxConfig struct {
 }
 
 // APIMux constructs an http.Handler with all applications routes defined.
-func APIMux(cfg APIMuxConfig) *httptreemux.ContextMux {
-	mux := httptreemux.NewContextMux()
+func APIMux(cfg APIMuxConfig) *web.App {
+	app := web.NewApp(cfg.Shutdown)
 
 	// Register debug check endpoints.
 	tgh := testgrp.Handlers{
 		Log: cfg.Log,
 	}
-	mux.Handle(http.MethodGet, "/v1/test", tgh.Test)
+	app.Handle(http.MethodGet, "/v1/test", tgh.Test)
 
-	return mux
+	return app
 }
