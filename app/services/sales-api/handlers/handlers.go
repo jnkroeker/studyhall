@@ -3,8 +3,9 @@
 package handlers
 
 import (
-	"encoding/json"
 	"expvar"
+	"jnk-ardan-service/app/services/sales-api/handlers/debug/checkgrp"
+	"jnk-ardan-service/app/services/sales-api/handlers/v1/testgrp"
 	"net/http"
 	"net/http/pprof"
 	"os"
@@ -31,6 +32,20 @@ func DebugStandardLibraryMux() *http.ServeMux {
 	return mux
 }
 
+func DebugMux(build string, log *zap.SugaredLogger) http.Handler {
+	mux := DebugStandardLibraryMux()
+
+	// Register debug check endpoints.
+	cgh := checkgrp.Handlers{
+		Build: build,
+		Log:   log,
+	}
+	mux.HandleFunc("/debug/readiness", cgh.Readiness)
+	mux.HandleFunc("/debug/liveness", cgh.Liveness)
+
+	return mux
+}
+
 // APIMuxConfig contains all the mandatory systems required by handlers.
 type APIMuxConfig struct {
 	Shutdown chan os.Signal
@@ -41,16 +56,11 @@ type APIMuxConfig struct {
 func APIMux(cfg APIMuxConfig) *httptreemux.ContextMux {
 	mux := httptreemux.NewContextMux()
 
-	h := func(w http.ResponseWriter, r *http.Request) {
-		status := struct {
-			Status string
-		}{
-			Status: "OK",
-		}
-		json.NewEncoder(w).Encode(status)
+	// Register debug check endpoints.
+	tgh := testgrp.Handlers{
+		Log: cfg.Log,
 	}
-
-	mux.Handle(http.MethodGet, "/test", h)
+	mux.Handle(http.MethodGet, "/v1/test", tgh.Test)
 
 	return mux
 }
