@@ -6,6 +6,7 @@ import (
 	"expvar"
 	"jnk-ardan-service/app/services/sales-api/handlers/debug/checkgrp"
 	"jnk-ardan-service/app/services/sales-api/handlers/v1/testgrp"
+	"jnk-ardan-service/business/web/mid"
 	"jnk-ardan-service/foundation/web"
 	"net/http"
 	"net/http/pprof"
@@ -56,7 +57,10 @@ type APIMuxConfig struct {
 func APIMux(cfg APIMuxConfig) *web.App {
 
 	// Construct the web.App which holds all routes.
-	app := web.NewApp(cfg.Shutdown)
+	app := web.NewApp(
+		cfg.Shutdown,
+		mid.Logger(cfg.Log),
+	)
 
 	// Load the routes for the different versions of the API
 	v1(app, cfg)
