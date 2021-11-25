@@ -3,6 +3,7 @@ package mid
 import (
 	"context"
 	"fmt"
+	"jnk-ardan-service/business/sys/metrics"
 	"jnk-ardan-service/foundation/web"
 	"net/http"
 	"runtime/debug"
@@ -27,6 +28,9 @@ func Panics() web.Middleware {
 
 					// Stack trace will be provided.
 					err = fmt.Errorf("PANIC [%v] TRACE [%s]", rec, string(trace))
+
+					// Updates the metrics stored in the context.
+					metrics.AddPanics(ctx)
 				}
 			}()
 
