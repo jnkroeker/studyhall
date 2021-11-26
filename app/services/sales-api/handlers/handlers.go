@@ -74,6 +74,7 @@ func APIMux(cfg APIMuxConfig) *web.App {
 
 func v1(app *web.App, cfg APIMuxConfig) {
 	const version = "v1"
+	app := web.NewApp(cfg.Shutdown)
 
 	tgh := testgrp.Handlers{
 		Log: cfg.Log,
