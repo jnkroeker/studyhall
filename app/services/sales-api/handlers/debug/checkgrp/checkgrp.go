@@ -9,6 +9,10 @@ import (
 	"time"
 
 	"github.com/jmoiron/sqlx"
+	"encoding/json"
+	"net/http"
+	"os"
+
 	"go.uber.org/zap"
 )
 
@@ -16,7 +20,8 @@ import (
 type Handlers struct {
 	Build string
 	Log   *zap.SugaredLogger
-	DB    *sqlx.DB
+	DB    *sqlx.DB 
+
 }
 
 // Readiness checks if the database is ready and if not will return a 500 status.
@@ -38,6 +43,8 @@ func (h Handlers) Readiness(w http.ResponseWriter, r *http.Request) {
 	}{
 		Status: status,
 	}
+
+	statusCode := http.StatusOK
 
 	if err := response(w, statusCode, data); err != nil {
 		h.Log.Errorw("readiness", "ERROR", err)
