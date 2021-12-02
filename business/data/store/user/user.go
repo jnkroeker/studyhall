@@ -81,10 +81,10 @@ func (s Store) Update(ctx context.Context, claims auth.Claims, userID string, uu
 		usr.Name = *uu.Name
 	}
 	if uu.Email != nil {
-		ust.Email = *uu.Email
+		usr.Email = *uu.Email
 	}
 	if uu.Roles != nil {
-		ust.Roles = uu.Roles
+		usr.Roles = uu.Roles
 	}
 	if uu.Password != nil {
 		pw, err := bcrypt.GenerateFromPassword([]byte(*uu.Password), bcrypt.DefaultCost)
