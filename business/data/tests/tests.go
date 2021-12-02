@@ -73,7 +73,7 @@ func NewUnit(t *testing.T, dbc DBContainer) (*zap.SugaredLogger, *sqlx.DB, func(
 
 	if err := schema.Seed(ctx, db); err != nil {
 		docker.DumpContainerLogs(t, c.ID)
-		docker.StopContainer(r, c.ID)
+		docker.StopContainer(t, c.ID)
 		t.Fatalf("Seeding error: %s", err)
 	}
 
@@ -102,4 +102,18 @@ func NewUnit(t *testing.T, dbc DBContainer) (*zap.SugaredLogger, *sqlx.DB, func(
 	}
 
 	return log, db, teardown
+}
+
+// StringPointer is a helper to get a *string from a string. It is in the tests
+// package because we normally don't want to deal with pointers to basic types
+// but it's useful in some test.
+func StringPointer(s string) *string {
+	return &s
+}
+
+// IntPointer is a helper to get a *int from an int. It is in the tests package
+// because we normally don't want to deal with pointers to basic types but it's
+// useful in some tests.
+func IntPointer(i int) *int {
+	return &i
 }
