@@ -122,11 +122,11 @@ func (s Store) Delete(ctx context.Context, claims auth.Claims, userID string) er
 
 	// If you are not an admin and looking to delete someone other than yourself.
 	if !claims.Authorized(auth.RoleAdmin) && claims.Subject != userID {
-		return database.Errforbidden
+		return database.ErrForbidden
 	}
 
 	data := struct {
-		UserId string `db:"user_id"`
+		UserID string `db:"user_id"`
 	}{
 		UserID: userID,
 	}

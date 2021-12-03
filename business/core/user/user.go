@@ -85,7 +85,6 @@ func (c Core) Query(ctx context.Context, pageNumber int, rowsPerPage int) ([]use
 
 	return users, nil
 }
-<<<<<<< HEAD
 
 // QueryByID gets the specified user from the database.
 func (c Core) QueryByID(ctx context.Context, claims auth.Claims, userID string) (user.User, error) {
@@ -118,5 +117,3 @@ func (c Core) Authenticate(ctx context.Context, now time.Time, email, password s
 
 	return claims, nil
 }
-=======
->>>>>>> core user package that sits on top of data api in order to apply additional business logic
