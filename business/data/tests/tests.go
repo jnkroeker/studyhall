@@ -13,7 +13,10 @@ import (
 	"time"
 
 	"jnk-ardan-service/business/data/schema"
+<<<<<<< HEAD
 	"jnk-ardan-service/business/data/store/user"
+=======
+>>>>>>> add a function to the test support package for starting an integration test
 	"jnk-ardan-service/business/sys/auth"
 	"jnk-ardan-service/business/sys/database"
 	"jnk-ardan-service/foundation/docker"
