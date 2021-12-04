@@ -122,11 +122,11 @@ func (s Store) Delete(ctx context.Context, claims auth.Claims, userID string) er
 
 	// If you are not an admin and looking to delete someone other than yourself.
 	if !claims.Authorized(auth.RoleAdmin) && claims.Subject != userID {
-		return database.Errforbidden
+		return database.ErrForbidden
 	}
 
 	data := struct {
-		UserId string `db:"user_id"`
+		UserID string `db:"user_id"`
 	}{
 		UserID: userID,
 	}
@@ -151,7 +151,7 @@ func (s Store) Query(ctx context.Context, pageNumber int, rowsPerPage int) ([]Us
 		RowsPerPage int `db:"rows_per_page"`
 	}{
 		Offset:      (pageNumber - 1) * rowsPerPage,
-		RowsPerPAge: rowsPerPage,
+		RowsPerPage: rowsPerPage,
 	}
 
 	const q = `
@@ -287,7 +287,7 @@ func (s Store) Authenticate(ctx context.Context, now time.Time, email, password 
 			Issuer:    "service project",
 			Subject:   usr.ID,
 			ExpiresAt: time.Now().Add(time.Hour).Unix(),
-			IssuedAt:  time.now().UTC().Unix(),
+			IssuedAt:  time.Now().UTC().Unix(),
 		},
 		Roles: usr.Roles,
 	}
