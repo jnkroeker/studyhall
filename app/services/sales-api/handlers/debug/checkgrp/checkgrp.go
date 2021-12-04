@@ -10,9 +10,12 @@ import (
 
 	"github.com/jmoiron/sqlx"
 	"encoding/json"
+	"jnk-ardan-service/business/sys/database"
 	"net/http"
 	"os"
+	"time"
 
+	"github.com/jmoiron/sqlx"
 	"go.uber.org/zap"
 )
 
@@ -43,8 +46,6 @@ func (h Handlers) Readiness(w http.ResponseWriter, r *http.Request) {
 	}{
 		Status: status,
 	}
-
-	statusCode := http.StatusOK
 
 	if err := response(w, statusCode, data); err != nil {
 		h.Log.Errorw("readiness", "ERROR", err)
