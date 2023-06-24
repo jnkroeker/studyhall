@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 run:
-	go run main.go
+	go run app/services/sales-api/main.go | go run app/tooling/logfmt/main.go
 
 # ======================================================================
 # Building containers
@@ -55,7 +55,7 @@ kind-restart:
 	kubectl rollout restart deployment sales-pod --namespace=sales-system
 
 kind-logs:
-	kubectl logs -l app=sales --namespace=sales-system --all-containers -f --tail=100 
+	kubectl logs -l app=sales --namespace=sales-system --all-containers -f --tail=100 | go run app/tooling/logfmt/main.go
 
 kind-update: all kind-load kind-restart
 
